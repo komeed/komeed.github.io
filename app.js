@@ -4,35 +4,51 @@
 
 const GITHUB_USERNAME = 'komeed';
 
-// Priority ordering requested for the Projects showcase
-const PROJECT_PRIORITY_ORDER = [
+// The 4 main projects to showcase in exact requested order
+const MAIN_PROJECTS_ORDER = [
   'mouse',
   'pcb_sim_cpp',
   'rc_circuit_simulator',
   'Chess'
 ];
 
+// Curated metadata for the 4 main projects
+const MAIN_PROJECTS_METADATA = {
+  mouse: {
+    highlight: 'Embedded / Custom PCB',
+    customDesc: 'Used the PAW3212 Sensor to build a custom mouse PCB and firmware to have a fully operational mouse.'
+  },
+  pcb_sim_cpp: {
+    highlight: 'Hardware Emulation',
+    customDesc: 'Simulating microcontrollers on virtual PCBs to test firmware (Nordic nRF52840 test subject).'
+  },
+  rc_circuit_simulator: {
+    highlight: 'Circuit Simulation',
+    customDesc: 'RC circuit time response and transient analysis simulator in C++.'
+  },
+  Chess: {
+    highlight: 'AI & Game Engine',
+    customDesc: '1400-1600 ELO chess-bot entirely in C where you play against a computer.'
+  }
+};
+
 // Static seed data matching the user's repositories as a resilient offline/immediate fallback
 const INITIAL_REPOSITORIES = [
   {
     name: 'mouse',
     html_url: 'https://github.com/komeed/mouse',
-    description: 'Used the PAW3212 Sensor to build a custom mouse PCB and firmware to create a fully operational mouse.',
+    description: 'Used the PAW3212 Sensor to build a custom mouse PCB and firmware to have a fully operational mouse.',
     language: 'C++',
     stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Embedded / Custom PCB'
+    fork: false
   },
   {
     name: 'pcb_sim_cpp',
     html_url: 'https://github.com/komeed/pcb_sim_cpp',
-    description: 'An attempt at simulating microcontrollers in PCBs to test firmware (nRF52840 test subject).',
+    description: 'Simulating microcontrollers on virtual PCBs to test firmware (Nordic nRF52840 test subject).',
     language: 'C',
     stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Hardware Emulation'
+    fork: false
   },
   {
     name: 'rc_circuit_simulator',
@@ -40,9 +56,7 @@ const INITIAL_REPOSITORIES = [
     description: 'RC circuit time response and transient analysis simulator in C++.',
     language: 'C++',
     stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Circuit Simulation'
+    fork: false
   },
   {
     name: 'Chess',
@@ -50,19 +64,7 @@ const INITIAL_REPOSITORIES = [
     description: '1400-1600 ELO chess-bot entirely in C where you play against a computer.',
     language: 'C',
     stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'AI & Game Engine'
-  },
-  {
-    name: 'SilksongPVP',
-    html_url: 'https://github.com/komeed/SilksongPVP',
-    description: 'Hollow Knight Silksong PVP Mod! Over 1.2k+ downloads across the community.',
-    language: 'C#',
-    stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Game Mod (1.2k+ DLs)'
+    fork: false
   },
   {
     name: 'ScreenTranslator',
@@ -70,9 +72,7 @@ const INITIAL_REPOSITORIES = [
     description: "Used Apple's Vision Framework, translation framework, and MySQL to create an app that easily and quickly translates text on the computer screen.",
     language: 'Swift',
     stargazers_count: 2,
-    fork: false,
-    featured: true,
-    highlight: 'macOS & Vision Framework'
+    fork: false
   },
   {
     name: 'Simulator',
@@ -80,9 +80,7 @@ const INITIAL_REPOSITORIES = [
     description: 'Simple Ball Collision Simulator in C++',
     language: 'C++',
     stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Physics Simulation'
+    fork: false
   },
   {
     name: 'ChessEngine',
@@ -90,8 +88,7 @@ const INITIAL_REPOSITORIES = [
     description: 'Graphics-less chess engine designed to evaluate positions and generate moves.',
     language: 'C',
     stargazers_count: 0,
-    fork: false,
-    featured: false
+    fork: false
   },
   {
     name: 'IOSTranslator',
@@ -99,8 +96,7 @@ const INITIAL_REPOSITORIES = [
     description: 'Simple OCR Translator iOS application leveraging computer vision.',
     language: 'Swift',
     stargazers_count: 0,
-    fork: false,
-    featured: false
+    fork: false
   },
   {
     name: 'Projects-With-Java',
@@ -108,8 +104,7 @@ const INITIAL_REPOSITORIES = [
     description: 'Java software projects exploring data structures and algorithms.',
     language: 'Java',
     stargazers_count: 0,
-    fork: false,
-    featured: false
+    fork: false
   },
   {
     name: 'unicorn',
@@ -117,8 +112,7 @@ const INITIAL_REPOSITORIES = [
     description: 'Unicorn CPU emulator framework (ARM, AArch64, M68K, Mips, Sparc, PowerPC, RiscV, X86).',
     language: 'C',
     stargazers_count: 0,
-    fork: true,
-    featured: false
+    fork: true
   },
   {
     name: 'Omeed-BSE-Portfolio',
@@ -126,8 +120,7 @@ const INITIAL_REPOSITORIES = [
     description: 'BlueStamp Engineering engineering portfolio and documentation.',
     language: 'HTML',
     stargazers_count: 1,
-    fork: true,
-    featured: false
+    fork: true
   }
 ];
 
@@ -276,37 +269,34 @@ function createRepoCardHTML(repo) {
 }
 
 /**
- * Render featured items in the Projects tab
- * Guaranteed order: mouse, pcb_sim_cpp, rc_circuit_simulator, Chess first
+ * Render Main Projects tab
+ * Strictly renders ONLY: mouse, pcb_sim_cpp, rc_circuit_simulator, and Chess
  */
 function renderFeatured() {
-  // Filter repos that are featured or in the priority order
-  const featured = repositories.filter(r => r.featured || PROJECT_PRIORITY_ORDER.includes(r.name));
+  const mainProjects = MAIN_PROJECTS_ORDER.map(name => {
+    // Find in repositories or fallback to initial
+    const found = repositories.find(r => r.name.toLowerCase() === name.toLowerCase()) ||
+                  INITIAL_REPOSITORIES.find(r => r.name.toLowerCase() === name.toLowerCase());
 
-  // Sort so PROJECT_PRIORITY_ORDER ('mouse', 'pcb_sim_cpp', 'rc_circuit_simulator', 'Chess') are first
-  featured.sort((a, b) => {
-    const indexA = PROJECT_PRIORITY_ORDER.indexOf(a.name);
-    const indexB = PROJECT_PRIORITY_ORDER.indexOf(b.name);
+    if (!found) return null;
 
-    if (indexA !== -1 && indexB !== -1) {
-      return indexA - indexB;
-    }
-    if (indexA !== -1) return -1;
-    if (indexB !== -1) return 1;
+    const meta = MAIN_PROJECTS_METADATA[name] || {};
+    return {
+      ...found,
+      highlight: meta.highlight || 'Main Project',
+      description: meta.customDesc || found.description
+    };
+  }).filter(Boolean);
 
-    return (b.stargazers_count || 0) - (a.stargazers_count || 0);
-  });
-
-  featuredGrid.innerHTML = featured.map(repo => {
+  featuredGrid.innerHTML = mainProjects.map(repo => {
     const langColor = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Default;
-    const highlight = repo.highlight || 'Featured Project';
 
     return `
       <div class="featured-card">
         <div>
-          <span class="featured-badge">${escapeHtml(highlight)}</span>
+          <span class="featured-badge">${escapeHtml(repo.highlight)}</span>
           <h3>${escapeHtml(repo.name)}</h3>
-          <p>${escapeHtml(repo.description || 'High-performance engineering project by Omeed Kasnavi.')}</p>
+          <p>${escapeHtml(repo.description)}</p>
         </div>
         <div class="card-bottom">
           <div class="lang-indicator">
@@ -376,25 +366,13 @@ async function fetchLiveRepositories() {
 
     const data = await res.json();
     if (Array.isArray(data) && data.length > 0) {
-      const highlightMap = {
-        mouse: 'Embedded / Custom PCB',
-        pcb_sim_cpp: 'Hardware Emulation',
-        rc_circuit_simulator: 'Circuit Simulation',
-        Chess: 'AI & Game Engine',
-        SilksongPVP: 'Game Mod (1.2k+ DLs)',
-        ScreenTranslator: 'macOS & Vision Framework',
-        Simulator: 'Physics Simulation'
-      };
-
       repositories = data.map(repo => ({
         name: repo.name,
         html_url: repo.html_url,
         description: repo.description,
         language: repo.language,
         stargazers_count: repo.stargazers_count,
-        fork: repo.fork,
-        featured: Boolean(highlightMap[repo.name]),
-        highlight: highlightMap[repo.name] || (repo.stargazers_count > 0 ? `${repo.stargazers_count} Stars` : '')
+        fork: repo.fork
       }));
 
       updateCounts();

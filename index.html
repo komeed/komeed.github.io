@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omeed Kasnavi | Software &amp; Systems Engineer</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Omeed Kasnavi | Computer Engineer</title>
   <meta name="description" content="Personal site, projects, and GitHub repositories of Omeed Kasnavi (@komeed)." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
   <!-- Ambient Atmospheric Lighting -->
@@ -117,7 +120,7 @@
         <div class="about-hero-card">
           <div class="about-hero-header">
             <h1 class="hero-name">Omeed Kasnavi</h1>
-            <h2 class="hero-role">Systems &amp; Software Developer</h2>
+            <h2 class="hero-role">Computer Engineer</h2>
             <div class="hero-location-bar">
               <span class="location-item">
                 <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
@@ -134,28 +137,29 @@
             </div>
           </div>
 
-          <!-- Temporary About Me Text Block -->
+          <!-- About Me Text Block -->
           <div class="about-bio-text">
-            <p>
-              Hi there! I'm an engineer specializing in <strong>low-level software engineering</strong>, <strong>microcontroller simulation &amp; firmware</strong>, and <strong>game modding / interactive engines</strong>.
+            <p class="bio-lead">
+              I’m a computer engineer interested in <strong>integrating AI</strong> into low-level software engineering, microcontroller firmware, and <strong>simulation</strong>.
             </p>
             <p>
-              My work spans simulating microcontrollers on virtual PCBs to test firmware (Nordic nRF52840 emulation), developing custom peripheral hardware (building custom mouse PCBs with the PAW3212 optical sensor), crafting game modifications like the <em>Hollow Knight Silksong PVP Mod</em> with over 1,200 downloads, and writing high-performance C chess algorithms.
+              I have experience training ML models and exploring practical applications where intelligent algorithms augment embedded hardware, physical modeling, and system architectures.
             </p>
-            <p class="bio-subnote">
-              Explore the buttons below to view my projects or explore all my open source repositories!
+            <p>
+              My work includes testing firmware on virtual PCBs (such as Nordic nRF52840 microcontroller simulation), developing custom peripheral hardware (building custom mouse PCBs with the PAW3212 optical sensor), modeling RC circuit dynamics, and writing high-performance C chess algorithms.
             </p>
           </div>
 
           <!-- Quick Tech Stack Badges -->
           <div class="tech-pills">
+            <span class="tech-pill">Machine Learning</span>
+            <span class="tech-pill">AI Integration</span>
             <span class="tech-pill">C</span>
             <span class="tech-pill">C++</span>
-            <span class="tech-pill">Swift</span>
-            <span class="tech-pill">C#</span>
+            <span class="tech-pill">Python</span>
             <span class="tech-pill">Embedded Firmware</span>
             <span class="tech-pill">PCB Simulation</span>
-            <span class="tech-pill">Apple Vision</span>
+            <span class="tech-pill">Swift</span>
           </div>
         </div>
 
@@ -167,7 +171,7 @@
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
           </svg>
-          <span>Explore Projects</span>
+          <span>Main Projects</span>
           <span class="arrow-icon">&rarr;</span>
         </button>
 
@@ -175,7 +179,7 @@
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
           </svg>
-          <span>View Repositories</span>
+          <span>All Repositories</span>
           <span class="cta-badge" id="ctaRepoCount">12</span>
         </button>
 
@@ -190,14 +194,14 @@
     </section>
 
     <!-- ======================================================================
-         PROJECTS TAB: Featured Highlights & Demos
+         PROJECTS TAB: Featured Main Projects (mouse, pcb_sim_cpp, rc_circuit_simulator, chess)
          ====================================================================== -->
     <section class="tab-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-btn-projects">
       <div class="panel-header">
         <div>
           <button class="back-link-btn" data-action="switch-tab" data-target="home">&larr; Back to Home</button>
-          <h2>Featured Projects</h2>
-          <p class="section-desc">Selected builds across game modifications, hardware simulation, robotics, and tools.</p>
+          <h2>Main Projects</h2>
+          <p class="section-desc">Key engineering builds across hardware firmware, PCB simulation, circuit analysis, and game engines.</p>
         </div>
         <button class="btn btn-secondary btn-sm" data-action="switch-tab" data-target="repos">
           Browse All Repositories &rarr;
@@ -205,7 +209,7 @@
       </div>
 
       <div class="featured-grid" id="featuredGrid">
-        <!-- Rendered dynamically -->
+        <!-- Strictly renders: mouse, pcb_sim_cpp, rc_circuit_simulator, and Chess -->
       </div>
     </section>
 
@@ -270,13 +274,13 @@
       <p>&copy; <span id="currentYear"></span> Omeed Kasnavi &bull; Hosted on GitHub Pages</p>
       <div class="footer-links">
         <a href="#" data-action="switch-tab" data-target="home">Home</a>
-        <a href="#" data-action="switch-tab" data-target="projects">Projects</a>
+        <a href="#" data-action="switch-tab" data-target="projects">Main Projects</a>
         <a href="#" data-action="switch-tab" data-target="repos">Repositories</a>
         <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
       </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

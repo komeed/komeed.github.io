@@ -506,6 +506,13 @@ body {
   margin-bottom: 14px;
 }
 
+.bio-lead {
+  font-size: 1.14rem;
+  color: #f8fafc;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
 .about-bio-text strong {
   color: #fff;
 }

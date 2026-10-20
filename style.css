@@ -362,12 +362,12 @@ body {
 }
 
 /* ==========================================================================
-   CENTER / HOME STAGE: IMG_3303 in middle + About Me Side Card
+   CENTER / HOME STAGE: Image Left, About Me Right, Links on Bottom
    ========================================================================== */
 .content-container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 36px 24px 80px;
   position: relative;
   z-index: 1;
 }
@@ -388,14 +388,13 @@ body {
 
 .center-stage {
   display: grid;
-  grid-template-columns: minmax(320px, 420px) minmax(360px, 1fr);
-  gap: 48px;
+  grid-template-columns: minmax(320px, 390px) 1fr;
+  gap: 44px;
   align-items: center;
-  min-height: calc(80vh - 120px);
-  padding: 20px 0;
+  padding: 10px 0 20px;
 }
 
-/* Profile Photo Card (IMG_3303) */
+/* Profile Photo Card on Left (IMG_3303) */
 .profile-hero-frame {
   display: flex;
   justify-content: center;
@@ -404,7 +403,7 @@ body {
 .photo-card {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 390px;
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
   border: 1px solid rgba(99, 102, 241, 0.35);
   border-radius: var(--radius-lg);
@@ -421,7 +420,7 @@ body {
 .photo-container {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 470px;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #0f172a;
@@ -448,36 +447,7 @@ body {
   pointer-events: none;
 }
 
-.photo-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  padding: 8px 12px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  color: #34d399;
-  justify-content: center;
-}
-
-.status-indicator-live {
-  width: 8px;
-  height: 8px;
-  background: #10b981;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #10b981;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* About Hero Card (In the front next to image) */
+/* About Hero Card on Right */
 .about-hero-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
@@ -491,20 +461,8 @@ body {
   margin-bottom: 20px;
 }
 
-.hero-chip {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #a5b4fc;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  margin-bottom: 12px;
-}
-
 .hero-name {
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.1;
@@ -562,7 +520,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 32px;
 }
 
 .tech-pill {
@@ -582,24 +539,28 @@ body {
   background: rgba(99, 102, 241, 0.1);
 }
 
-/* CTA Buttons */
-.hero-cta-buttons {
+/* Bottom Links Section (Centered along the bottom) */
+.hero-bottom-links {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 18px;
   flex-wrap: wrap;
+  padding: 32px 0 16px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-cta-primary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 26px;
+  padding: 14px 28px;
   border-radius: var(--radius-full);
   background: var(--accent-gradient);
   color: #fff;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-family: var(--font-sans);
   border: none;
   cursor: pointer;
@@ -624,13 +585,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 24px;
+  padding: 14px 26px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-family: var(--font-sans);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -645,9 +606,9 @@ body {
 .cta-badge {
   background: rgba(99, 102, 241, 0.25);
   color: #c7d2fe;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: var(--radius-full);
 }
 
@@ -655,16 +616,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 12px 18px;
+  padding: 13px 22px;
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
-  transition: color var(--transition-fast);
+  font-size: 0.92rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
 }
 
 .btn-cta-ghost:hover {
   color: #fff;
+  border-color: var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Back Link Button */
@@ -1148,7 +1113,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .hero-cta-buttons {
+  .hero-bottom-links {
     flex-direction: column;
     align-items: stretch;
   }

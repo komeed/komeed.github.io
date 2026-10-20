@@ -4,17 +4,55 @@
 
 const GITHUB_USERNAME = 'komeed';
 
+// Priority ordering requested for the Projects showcase
+const PROJECT_PRIORITY_ORDER = [
+  'mouse',
+  'pcb_sim_cpp',
+  'rc_circuit_simulator',
+  'Chess'
+];
+
 // Static seed data matching the user's repositories as a resilient offline/immediate fallback
 const INITIAL_REPOSITORIES = [
   {
+    name: 'mouse',
+    html_url: 'https://github.com/komeed/mouse',
+    description: 'Used the PAW3212 Sensor to build a custom mouse PCB and firmware to create a fully operational mouse.',
+    language: 'C++',
+    stargazers_count: 0,
+    fork: false,
+    featured: true,
+    highlight: 'Embedded / Custom PCB'
+  },
+  {
     name: 'pcb_sim_cpp',
     html_url: 'https://github.com/komeed/pcb_sim_cpp',
-    description: 'An attempt at simulating microcontrollers in pcbs to test firmware (nrf52840 test subject)',
+    description: 'An attempt at simulating microcontrollers in PCBs to test firmware (nRF52840 test subject).',
     language: 'C',
     stargazers_count: 0,
     fork: false,
     featured: true,
     highlight: 'Hardware Emulation'
+  },
+  {
+    name: 'rc_circuit_simulator',
+    html_url: 'https://github.com/komeed/rc_circuit_simulator',
+    description: 'RC circuit time response and transient analysis simulator in C++.',
+    language: 'C++',
+    stargazers_count: 0,
+    fork: false,
+    featured: true,
+    highlight: 'Circuit Simulation'
+  },
+  {
+    name: 'Chess',
+    html_url: 'https://github.com/komeed/Chess',
+    description: '1400-1600 ELO chess-bot entirely in C where you play against a computer.',
+    language: 'C',
+    stargazers_count: 0,
+    fork: false,
+    featured: true,
+    highlight: 'AI & Game Engine'
   },
   {
     name: 'SilksongPVP',
@@ -25,26 +63,6 @@ const INITIAL_REPOSITORIES = [
     fork: false,
     featured: true,
     highlight: 'Game Mod (1.2k+ DLs)'
-  },
-  {
-    name: 'Chess',
-    html_url: 'https://github.com/komeed/Chess',
-    description: '1400-1600 elo chess-bot entirely in C where you play against a computer.',
-    language: 'C',
-    stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'AI & Game Engine'
-  },
-  {
-    name: 'mouse',
-    html_url: 'https://github.com/komeed/mouse',
-    description: 'Used the PAW3212 Sensor to build a custom mouse pcb and firmware to have a fully operational mouse.',
-    language: 'C++',
-    stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Embedded / Custom PCB'
   },
   {
     name: 'ScreenTranslator',
@@ -74,16 +92,6 @@ const INITIAL_REPOSITORIES = [
     stargazers_count: 0,
     fork: false,
     featured: false
-  },
-  {
-    name: 'rc_circuit_simulator',
-    html_url: 'https://github.com/komeed/rc_circuit_simulator',
-    description: 'RC circuit time response and transient analysis simulator.',
-    language: 'C++',
-    stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Circuit Simulation'
   },
   {
     name: 'IOSTranslator',
@@ -181,12 +189,12 @@ function switchTab(tabName) {
     panel.classList.toggle('active', isTarget);
   });
 
-  // Scroll gently toward top if navigating away
+  // Scroll gently toward top when navigating views
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /**
- * Render repository cards
+ * Render repository cards in the Repositories tab
  */
 function renderRepositories() {
   const filtered = repositories.filter((repo) => {
@@ -268,10 +276,27 @@ function createRepoCardHTML(repo) {
 }
 
 /**
- * Render featured items in the Featured Projects tab
+ * Render featured items in the Projects tab
+ * Guaranteed order: mouse, pcb_sim_cpp, rc_circuit_simulator, Chess first
  */
 function renderFeatured() {
-  const featured = repositories.filter(r => r.featured || r.name === 'SilksongPVP' || r.name === 'pcb_sim_cpp' || r.name === 'mouse');
+  // Filter repos that are featured or in the priority order
+  const featured = repositories.filter(r => r.featured || PROJECT_PRIORITY_ORDER.includes(r.name));
+
+  // Sort so PROJECT_PRIORITY_ORDER ('mouse', 'pcb_sim_cpp', 'rc_circuit_simulator', 'Chess') are first
+  featured.sort((a, b) => {
+    const indexA = PROJECT_PRIORITY_ORDER.indexOf(a.name);
+    const indexB = PROJECT_PRIORITY_ORDER.indexOf(b.name);
+
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+
+    return (b.stargazers_count || 0) - (a.stargazers_count || 0);
+  });
+
   featuredGrid.innerHTML = featured.map(repo => {
     const langColor = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Default;
     const highlight = repo.highlight || 'Featured Project';
@@ -352,13 +377,13 @@ async function fetchLiveRepositories() {
     const data = await res.json();
     if (Array.isArray(data) && data.length > 0) {
       const highlightMap = {
-        SilksongPVP: 'Game Mod (1.2k+ DLs)',
-        pcb_sim_cpp: 'Hardware Emulation',
         mouse: 'Embedded / Custom PCB',
+        pcb_sim_cpp: 'Hardware Emulation',
+        rc_circuit_simulator: 'Circuit Simulation',
         Chess: 'AI & Game Engine',
+        SilksongPVP: 'Game Mod (1.2k+ DLs)',
         ScreenTranslator: 'macOS & Vision Framework',
-        Simulator: 'Physics Simulation',
-        rc_circuit_simulator: 'Circuit Simulation'
+        Simulator: 'Physics Simulation'
       };
 
       repositories = data.map(repo => ({

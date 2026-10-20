@@ -96,29 +96,26 @@
   <main class="content-container">
 
     <!-- ======================================================================
-         CENTER / HOME PAGE: Omeed (IMG_3303) in middle + Temporary About Me
+         CENTER / HOME PAGE: Image on Left, About Me on Right, Links on Bottom
          ====================================================================== -->
     <section class="tab-panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-btn-home">
+      
+      <!-- Top Section: Image on Left side, About Me on Right side -->
       <div class="center-stage">
         
-        <!-- Left / Center: Profile Image (IMG_3303) -->
+        <!-- Left Side: Profile Image (IMG_3303) -->
         <div class="profile-hero-frame">
           <div class="photo-card">
             <div class="photo-container">
               <img src="assets/IMG_3303.jpg" alt="Omeed Kasnavi" class="center-photo" />
               <div class="photo-glow-border"></div>
             </div>
-            <div class="photo-badge">
-              <span class="status-indicator-live"></span>
-              <span>Available for engineering opportunities</span>
-            </div>
           </div>
         </div>
 
-        <!-- Right / Front: About Me Card next to image -->
+        <!-- Right Side: About Me Card -->
         <div class="about-hero-card">
           <div class="about-hero-header">
-            <span class="hero-chip">👋 Welcome to my site</span>
             <h1 class="hero-name">Omeed Kasnavi</h1>
             <h2 class="hero-role">Systems &amp; Software Developer</h2>
             <div class="hero-location-bar">
@@ -146,7 +143,7 @@
               My work spans simulating microcontrollers on virtual PCBs to test firmware (Nordic nRF52840 emulation), developing custom peripheral hardware (building custom mouse PCBs with the PAW3212 optical sensor), crafting game modifications like the <em>Hollow Knight Silksong PVP Mod</em> with over 1,200 downloads, and writing high-performance C chess algorithms.
             </p>
             <p class="bio-subnote">
-              Use the buttons below to dive right into my featured projects or explore all my GitHub repositories!
+              Explore the buttons below to view my projects or explore all my open source repositories!
             </p>
           </div>
 
@@ -160,35 +157,35 @@
             <span class="tech-pill">PCB Simulation</span>
             <span class="tech-pill">Apple Vision</span>
           </div>
-
-          <!-- Direct Action Buttons to Projects or Repositories -->
-          <div class="hero-cta-buttons">
-            <button class="btn btn-cta-primary" id="btnGoProjects" data-action="switch-tab" data-target="projects">
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
-              </svg>
-              <span>Explore Projects</span>
-              <span class="arrow-icon">&rarr;</span>
-            </button>
-
-            <button class="btn btn-cta-secondary" id="btnGoRepos" data-action="switch-tab" data-target="repos">
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
-              </svg>
-              <span>View Repositories</span>
-              <span class="cta-badge" id="ctaRepoCount">12</span>
-            </button>
-
-            <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-cta-ghost">
-              <span>GitHub Profile</span>
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
-                <path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2z"></path>
-                <path d="M7 2.75A.75.75 0 017.75 2h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V4.56l-5.47 5.47a.75.75 0 11-1.06-1.06l5.47-5.47H7.75A.75.75 0 017 2.75z"></path>
-              </svg>
-            </a>
-          </div>
         </div>
 
+      </div>
+
+      <!-- Bottom Section: Direct Action Links & Buttons -->
+      <div class="hero-bottom-links">
+        <button class="btn btn-cta-primary" id="btnGoProjects" data-action="switch-tab" data-target="projects">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+          </svg>
+          <span>Explore Projects</span>
+          <span class="arrow-icon">&rarr;</span>
+        </button>
+
+        <button class="btn btn-cta-secondary" id="btnGoRepos" data-action="switch-tab" data-target="repos">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
+          </svg>
+          <span>View Repositories</span>
+          <span class="cta-badge" id="ctaRepoCount">12</span>
+        </button>
+
+        <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-cta-ghost">
+          <span>GitHub Profile</span>
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2z"></path>
+            <path d="M7 2.75A.75.75 0 017.75 2h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V4.56l-5.47 5.47a.75.75 0 11-1.06-1.06l5.47-5.47H7.75A.75.75 0 017 2.75z"></path>
+          </svg>
+        </a>
       </div>
     </section>
 

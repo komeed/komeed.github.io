@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omeed Kasnavi | Portfolio &amp; Projects</title>
-  <meta name="description" content="Personal portfolio and GitHub repositories of Omeed Kasnavi (@komeed)." />
+  <title>Omeed Kasnavi | Software &amp; Systems Engineer</title>
+  <meta name="description" content="Personal site, projects, and GitHub repositories of Omeed Kasnavi (@komeed)." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background Glow Accents -->
+  <!-- Ambient Atmospheric Lighting -->
   <div class="glow glow-top" aria-hidden="true"></div>
   <div class="glow glow-bottom" aria-hidden="true"></div>
 
   <!-- Quick Access Repositories Floating Tab -->
   <aside class="quick-repo-tab" id="quickRepoTab" aria-label="Quick Repositories Access">
-    <button class="quick-tab-trigger" id="quickTabTrigger" aria-expanded="false" title="Open Repositories Menu">
+    <button class="quick-tab-trigger" id="quickTabTrigger" aria-expanded="false" title="Open Quick Repositories Menu">
       <svg class="tab-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
         <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
       </svg>
@@ -43,41 +43,46 @@
     </div>
   </aside>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Top Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#" class="nav-brand">
+      <a href="#" class="nav-brand" data-action="switch-tab" data-target="home">
         <span class="brand-avatar-mini">
-          <img src="https://avatars.githubusercontent.com/u/138723928?v=4" alt="komeed avatar" />
+          <img src="assets/IMG_3303.jpg" alt="Omeed Kasnavi" />
         </span>
-        <span class="brand-text">komeed</span>
+        <div class="brand-info">
+          <span class="brand-name">Omeed Kasnavi</span>
+          <span class="brand-handle">@komeed</span>
+        </div>
       </a>
 
-      <!-- Main Tabs in Header -->
+      <!-- Primary Tabs -->
       <nav class="nav-tabs" role="tablist">
-        <button class="nav-tab active" role="tab" id="tab-btn-repos" aria-selected="true" aria-controls="panel-repos" data-tab="repos">
+        <button class="nav-tab active" role="tab" id="tab-btn-home" aria-selected="true" aria-controls="panel-home" data-tab="home">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8.707 1.5a1 1 0 00-1.414 0L.646 8.146a.5.5 0 00.708.708L2 8.207V13.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V8.207l.646.647a.5.5 0 00.708-.708L8.707 1.5zM12 13.5a.5.5 0 01-.5.5h-7a.5.5 0 01-.5-.5V7.207l4-4 4 4V13.5z"></path>
+          </svg>
+          <span>Home</span>
+        </button>
+
+        <button class="nav-tab" role="tab" id="tab-btn-projects" aria-selected="false" aria-controls="panel-projects" data-tab="projects">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+          </svg>
+          <span>Projects</span>
+        </button>
+
+        <button class="nav-tab" role="tab" id="tab-btn-repos" aria-selected="false" aria-controls="panel-repos" data-tab="repos">
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
           </svg>
           <span>Repositories</span>
           <span class="badge" id="navRepoCount">12</span>
         </button>
-        <button class="nav-tab" role="tab" id="tab-btn-featured" aria-selected="false" aria-controls="panel-featured" data-tab="featured">
-          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-            <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
-          </svg>
-          <span>Featured</span>
-        </button>
-        <button class="nav-tab" role="tab" id="tab-btn-about" aria-selected="false" aria-controls="panel-about" data-tab="about">
-          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-            <path d="M10.561 8.073a6.005 6.005 0 013.432 5.142.75.75 0 11-1.498.07 4.5 4.5 0 00-8.99 0 .75.75 0 01-1.498-.07 6.004 6.004 0 013.431-5.142 3.999 3.999 0 115.123 0zM10.5 5a2.5 2.5 0 10-5 0 2.5 2.5 0 005 0z"></path>
-          </svg>
-          <span>About</span>
-        </button>
       </nav>
 
       <div class="nav-actions">
-        <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-primary" title="Visit GitHub Profile">
+        <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-github" title="Visit GitHub Profile">
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
           </svg>
@@ -87,55 +92,136 @@
     </div>
   </header>
 
-  <!-- Hero Profile Section -->
-  <section class="hero-section">
-    <div class="hero-container">
-      <div class="hero-profile">
-        <div class="avatar-wrapper">
-          <img src="https://avatars.githubusercontent.com/u/138723928?v=4" alt="Omeed Kasnavi" class="hero-avatar" />
-          <span class="status-indicator" title="Available / Coding"></span>
-        </div>
-        <div class="hero-details">
-          <div class="hero-title-row">
-            <h1>Omeed Kasnavi</h1>
-            <span class="handle-tag">@komeed</span>
+  <!-- Main Viewports / Tab Panels -->
+  <main class="content-container">
+
+    <!-- ======================================================================
+         CENTER / HOME PAGE: Omeed (IMG_3303) in middle + Temporary About Me
+         ====================================================================== -->
+    <section class="tab-panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-btn-home">
+      <div class="center-stage">
+        
+        <!-- Left / Center: Profile Image (IMG_3303) -->
+        <div class="profile-hero-frame">
+          <div class="photo-card">
+            <div class="photo-container">
+              <img src="assets/IMG_3303.jpg" alt="Omeed Kasnavi" class="center-photo" />
+              <div class="photo-glow-border"></div>
+            </div>
+            <div class="photo-badge">
+              <span class="status-indicator-live"></span>
+              <span>Available for engineering opportunities</span>
+            </div>
           </div>
-          <p class="hero-bio">
-            Systems &amp; Software Developer &bull; Embedded Firmware &bull; Simulators &bull; C / C++ / Swift / C#
-          </p>
-          <div class="hero-meta">
-            <span class="meta-item">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
-                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75a.75.75 0 00-1.5 0v3.5c0 .2.08.39.22.53l2.5 2.5a.75.75 0 001.06-1.06L8.75 7.97V4.75z"></path>
+        </div>
+
+        <!-- Right / Front: About Me Card next to image -->
+        <div class="about-hero-card">
+          <div class="about-hero-header">
+            <span class="hero-chip">👋 Welcome to my site</span>
+            <h1 class="hero-name">Omeed Kasnavi</h1>
+            <h2 class="hero-role">Systems &amp; Software Developer</h2>
+            <div class="hero-location-bar">
+              <span class="location-item">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                  <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75a.75.75 0 00-1.5 0v3.5c0 .2.08.39.22.53l2.5 2.5a.75.75 0 001.06-1.06L8.75 7.97V4.75z"></path>
+                </svg>
+                University of Illinois Urbana-Champaign (UIUC)
+              </span>
+              <span class="location-item">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                  <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
+                </svg>
+                <span id="heroRepoCountLabel">12 Public Repositories</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Temporary About Me Text Block -->
+          <div class="about-bio-text">
+            <p>
+              Hi there! I'm an engineer specializing in <strong>low-level software engineering</strong>, <strong>microcontroller simulation &amp; firmware</strong>, and <strong>game modding / interactive engines</strong>.
+            </p>
+            <p>
+              My work spans simulating microcontrollers on virtual PCBs to test firmware (Nordic nRF52840 emulation), developing custom peripheral hardware (building custom mouse PCBs with the PAW3212 optical sensor), crafting game modifications like the <em>Hollow Knight Silksong PVP Mod</em> with over 1,200 downloads, and writing high-performance C chess algorithms.
+            </p>
+            <p class="bio-subnote">
+              Use the buttons below to dive right into my featured projects or explore all my GitHub repositories!
+            </p>
+          </div>
+
+          <!-- Quick Tech Stack Badges -->
+          <div class="tech-pills">
+            <span class="tech-pill">C</span>
+            <span class="tech-pill">C++</span>
+            <span class="tech-pill">Swift</span>
+            <span class="tech-pill">C#</span>
+            <span class="tech-pill">Embedded Firmware</span>
+            <span class="tech-pill">PCB Simulation</span>
+            <span class="tech-pill">Apple Vision</span>
+          </div>
+
+          <!-- Direct Action Buttons to Projects or Repositories -->
+          <div class="hero-cta-buttons">
+            <button class="btn btn-cta-primary" id="btnGoProjects" data-action="switch-tab" data-target="projects">
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
               </svg>
-              UIUC
-            </span>
-            <span class="meta-item">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <span>Explore Projects</span>
+              <span class="arrow-icon">&rarr;</span>
+            </button>
+
+            <button class="btn btn-cta-secondary" id="btnGoRepos" data-action="switch-tab" data-target="repos">
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
                 <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path>
               </svg>
-              <strong id="heroRepoCount">12</strong> Public Repositories
-            </span>
-            <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="meta-link">
-              github.com/komeed &rarr;
+              <span>View Repositories</span>
+              <span class="cta-badge" id="ctaRepoCount">12</span>
+            </button>
+
+            <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-cta-ghost">
+              <span>GitHub Profile</span>
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                <path d="M3.75 2h3.5a.75.75 0 010 1.5h-3.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-3.5a.75.75 0 011.5 0v3.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2z"></path>
+                <path d="M7 2.75A.75.75 0 017.75 2h5.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V4.56l-5.47 5.47a.75.75 0 11-1.06-1.06l5.47-5.47H7.75A.75.75 0 017 2.75z"></path>
+              </svg>
             </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Main Content Tabs -->
-  <main class="content-container">
-    
-    <!-- Tab Panel: All Repositories -->
-    <section class="tab-panel active" id="panel-repos" role="tabpanel" aria-labelledby="tab-btn-repos">
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PROJECTS TAB: Featured Highlights & Demos
+         ====================================================================== -->
+    <section class="tab-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-btn-projects">
       <div class="panel-header">
         <div>
-          <h2>All Repositories</h2>
-          <p class="section-desc">Explore projects, simulators, game mods, and system tools.</p>
+          <button class="back-link-btn" data-action="switch-tab" data-target="home">&larr; Back to Home</button>
+          <h2>Featured Projects</h2>
+          <p class="section-desc">Selected builds across game modifications, hardware simulation, robotics, and tools.</p>
         </div>
-        <!-- Live status pill -->
+        <button class="btn btn-secondary btn-sm" data-action="switch-tab" data-target="repos">
+          Browse All Repositories &rarr;
+        </button>
+      </div>
+
+      <div class="featured-grid" id="featuredGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         REPOSITORIES TAB: Complete Repository Directory with Search & Filters
+         ====================================================================== -->
+    <section class="tab-panel" id="panel-repos" role="tabpanel" aria-labelledby="tab-btn-repos">
+      <div class="panel-header">
+        <div>
+          <button class="back-link-btn" data-action="switch-tab" data-target="home">&larr; Back to Home</button>
+          <h2>All Repositories</h2>
+          <p class="section-desc">Search and filter all open source repositories on GitHub.</p>
+        </div>
         <div class="sync-status" id="syncStatus">
           <span class="sync-dot"></span>
           <span class="sync-text">Live Sync with GitHub</span>
@@ -148,7 +234,7 @@
           <svg class="search-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path d="M11.5 7a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm-.82 4.74a6 6 0 10-1.06 1.06l3.65 3.65a.75.75 0 101.06-1.06l-3.65-3.65z"></path>
           </svg>
-          <input type="text" id="repoSearch" placeholder="Find a repository by name or topic..." aria-label="Search repositories" />
+          <input type="text" id="repoSearch" placeholder="Filter repositories by name, language, or keyword..." aria-label="Search repositories" />
           <button id="clearSearch" class="clear-btn" aria-label="Clear search" style="display: none;">&times;</button>
         </div>
 
@@ -162,9 +248,9 @@
         </div>
       </div>
 
-      <!-- Repository Cards Grid -->
+      <!-- Repository Grid -->
       <div class="repo-grid" id="repoGrid">
-        <!-- Rendered dynamically & static fallback -->
+        <!-- Rendered dynamically -->
       </div>
 
       <!-- Empty state if no search matches -->
@@ -179,58 +265,17 @@
       </div>
     </section>
 
-    <!-- Tab Panel: Featured Projects -->
-    <section class="tab-panel" id="panel-featured" role="tabpanel" aria-labelledby="tab-btn-featured">
-      <div class="panel-header">
-        <div>
-          <h2>Featured Highlights</h2>
-          <p class="section-desc">Highlighted projects spanning robotics, game mods, emulation, and AI.</p>
-        </div>
-      </div>
-      <div class="featured-grid" id="featuredGrid">
-        <!-- Injected dynamically -->
-      </div>
-    </section>
-
-    <!-- Tab Panel: About -->
-    <section class="tab-panel" id="panel-about" role="tabpanel" aria-labelledby="tab-btn-about">
-      <div class="about-card">
-        <h2>About Omeed Kasnavi</h2>
-        <p class="lead-text">
-          Computer Science &amp; Engineering developer passionate about low-level systems, firmware simulation, custom hardware, and interactive software.
-        </p>
-        <div class="about-grid">
-          <div class="about-item">
-            <h4>Embedded &amp; Systems</h4>
-            <p>PCB simulation, microcontroller firmware (Nordic nRF52840, Renode), custom hardware sensor integration (PAW3212 optical mouse sensor), and C/C++ engine development.</p>
-          </div>
-          <div class="about-item">
-            <h4>Simulation &amp; Game Modding</h4>
-            <p>Ball physics collision simulator, RC circuit dynamics simulator, Hollow Knight Silksong PVP mod (1,200+ downloads), and custom chess bots.</p>
-          </div>
-          <div class="about-item">
-            <h4>Application Development</h4>
-            <p>iOS &amp; macOS OCR translation tools utilizing Apple Vision framework, translation APIs, and native Swift architectures.</p>
-          </div>
-        </div>
-        <div class="about-cta">
-          <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Follow on GitHub &rarr;
-          </a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <p>&copy; <span id="currentYear"></span> Omeed Kasnavi. Hosted with GitHub Pages.</p>
+      <p>&copy; <span id="currentYear"></span> Omeed Kasnavi &bull; Hosted on GitHub Pages</p>
       <div class="footer-links">
+        <a href="#" data-action="switch-tab" data-target="home">Home</a>
+        <a href="#" data-action="switch-tab" data-target="projects">Projects</a>
+        <a href="#" data-action="switch-tab" data-target="repos">Repositories</a>
         <a href="https://github.com/komeed" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-        <a href="https://github.com/komeed?tab=repositories" target="_blank" rel="noopener noreferrer">All Repositories</a>
-        <a href="https://github.com/komeed/komeed.github.io" target="_blank" rel="noopener noreferrer">Source Code</a>
       </div>
     </div>
   </footer>

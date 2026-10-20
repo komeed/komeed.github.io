@@ -17,6 +17,16 @@ const INITIAL_REPOSITORIES = [
     highlight: 'Hardware Emulation'
   },
   {
+    name: 'SilksongPVP',
+    html_url: 'https://github.com/komeed/SilksongPVP',
+    description: 'Hollow Knight Silksong PVP Mod! Over 1.2k+ downloads across the community.',
+    language: 'C#',
+    stargazers_count: 0,
+    fork: false,
+    featured: true,
+    highlight: 'Game Mod (1.2k+ DLs)'
+  },
+  {
     name: 'Chess',
     html_url: 'https://github.com/komeed/Chess',
     description: '1400-1600 elo chess-bot entirely in C where you play against a computer.',
@@ -25,16 +35,6 @@ const INITIAL_REPOSITORIES = [
     fork: false,
     featured: true,
     highlight: 'AI & Game Engine'
-  },
-  {
-    name: 'SilksongPVP',
-    html_url: 'https://github.com/komeed/SilksongPVP',
-    description: 'Hollow Knight Silksong PVP Mod! Has 1.2k+ downloads',
-    language: 'C#',
-    stargazers_count: 0,
-    fork: false,
-    featured: true,
-    highlight: 'Game Mod (1.2k+ DLs)'
   },
   {
     name: 'mouse',
@@ -63,7 +63,8 @@ const INITIAL_REPOSITORIES = [
     language: 'C++',
     stargazers_count: 0,
     fork: false,
-    featured: false
+    featured: true,
+    highlight: 'Physics Simulation'
   },
   {
     name: 'ChessEngine',
@@ -81,7 +82,8 @@ const INITIAL_REPOSITORIES = [
     language: 'C++',
     stargazers_count: 0,
     fork: false,
-    featured: false
+    featured: true,
+    highlight: 'Circuit Simulation'
   },
   {
     name: 'IOSTranslator',
@@ -149,7 +151,8 @@ const emptyState = document.getElementById('emptyState');
 const resetFiltersBtn = document.getElementById('resetFiltersBtn');
 const navRepoCount = document.getElementById('navRepoCount');
 const quickTabCount = document.getElementById('quickTabCount');
-const heroRepoCount = document.getElementById('heroRepoCount');
+const heroRepoCountLabel = document.getElementById('heroRepoCountLabel');
+const ctaRepoCount = document.getElementById('ctaRepoCount');
 const currentYear = document.getElementById('currentYear');
 const quickTabTrigger = document.getElementById('quickTabTrigger');
 const quickTabDrawer = document.getElementById('quickTabDrawer');
@@ -158,6 +161,28 @@ const drawerClose = document.getElementById('drawerClose');
 // Set current copyright year
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
+}
+
+/**
+ * Switch active view / tab
+ */
+function switchTab(tabName) {
+  const tabs = document.querySelectorAll('.nav-tab');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabs.forEach(tab => {
+    const isTarget = tab.dataset.tab === tabName;
+    tab.classList.toggle('active', isTarget);
+    tab.setAttribute('aria-selected', String(isTarget));
+  });
+
+  panels.forEach(panel => {
+    const isTarget = panel.id === `panel-${tabName}`;
+    panel.classList.toggle('active', isTarget);
+  });
+
+  // Scroll gently toward top if navigating away
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /**
@@ -243,10 +268,10 @@ function createRepoCardHTML(repo) {
 }
 
 /**
- * Render featured items in the Featured tab
+ * Render featured items in the Featured Projects tab
  */
 function renderFeatured() {
-  const featured = repositories.filter(r => r.featured || r.stargazers_count > 0 || r.name === 'SilksongPVP' || r.name === 'pcb_sim_cpp');
+  const featured = repositories.filter(r => r.featured || r.name === 'SilksongPVP' || r.name === 'pcb_sim_cpp' || r.name === 'mouse');
   featuredGrid.innerHTML = featured.map(repo => {
     const langColor = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Default;
     const highlight = repo.highlight || 'Featured Project';
@@ -256,7 +281,7 @@ function renderFeatured() {
         <div>
           <span class="featured-badge">${escapeHtml(highlight)}</span>
           <h3>${escapeHtml(repo.name)}</h3>
-          <p>${escapeHtml(repo.description || 'High-performance project by Omeed.')}</p>
+          <p>${escapeHtml(repo.description || 'High-performance engineering project by Omeed Kasnavi.')}</p>
         </div>
         <div class="card-bottom">
           <div class="lang-indicator">
@@ -264,7 +289,7 @@ function renderFeatured() {
             <span>${escapeHtml(repo.language || 'C/C++')}</span>
           </div>
           <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-            View Repository &rarr;
+            View on GitHub &rarr;
           </a>
         </div>
       </div>
@@ -299,7 +324,8 @@ function updateCounts() {
   const count = repositories.length;
   if (navRepoCount) navRepoCount.textContent = count;
   if (quickTabCount) quickTabCount.textContent = count;
-  if (heroRepoCount) heroRepoCount.textContent = count;
+  if (ctaRepoCount) ctaRepoCount.textContent = count;
+  if (heroRepoCountLabel) heroRepoCountLabel.textContent = `${count} Public Repositories`;
 }
 
 /**
@@ -325,13 +351,14 @@ async function fetchLiveRepositories() {
 
     const data = await res.json();
     if (Array.isArray(data) && data.length > 0) {
-      // Merge with featured highlights metadata
       const highlightMap = {
         SilksongPVP: 'Game Mod (1.2k+ DLs)',
         pcb_sim_cpp: 'Hardware Emulation',
         mouse: 'Embedded / Custom PCB',
         Chess: 'AI & Game Engine',
-        ScreenTranslator: 'macOS & Vision Framework'
+        ScreenTranslator: 'macOS & Vision Framework',
+        Simulator: 'Physics Simulation',
+        rc_circuit_simulator: 'Circuit Simulation'
       };
 
       repositories = data.map(repo => ({
@@ -356,31 +383,23 @@ async function fetchLiveRepositories() {
 }
 
 /**
- * Tab Switching Logic
+ * Set up dynamic tab event listeners
  */
 function setupTabs() {
-  const tabs = document.querySelectorAll('.nav-tab');
-  const panels = document.querySelectorAll('.tab-panel');
-
-  tabs.forEach(tab => {
+  // Navigation tabs
+  document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-      const targetId = `panel-${tab.dataset.tab}`;
+      switchTab(tab.dataset.tab);
+    });
+  });
 
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-
-      panels.forEach(p => {
-        p.classList.remove('active');
-      });
-
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      const targetPanel = document.getElementById(targetId);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
+  // Action buttons configured with data-action="switch-tab"
+  document.querySelectorAll('[data-action="switch-tab"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = btn.dataset.target;
+      if (target) {
+        switchTab(target);
       }
     });
   });
